@@ -41,12 +41,6 @@ void catch_invalid_first_line_error(const char *filename) {
     char *str = mx_file_to_str(filename);
     char **strarr = mx_strsplit(str, '\n');
 
-    int strarr_size = 0;
-
-    for (int i = 0; strarr[i]; i++) {
-        strarr_size++;
-    }
-
     for (int i = 0; i < mx_strlen(strarr[0]); i++) {
         if (!mx_isdigit(strarr[0][i])) {
             mx_printerr("error: line 1 is not valid\n");

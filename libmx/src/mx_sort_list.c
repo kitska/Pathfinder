@@ -11,7 +11,6 @@ t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *)) {
     do {
         swapped = false;
         t_list *current = lst;
-        t_list *previous = NULL;
 
         while (current != NULL && current->next != NULL) {
             if (cmp(current->data, current->next->data)) {
@@ -22,7 +21,6 @@ t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *)) {
                 swapped = true;
             }
 
-            previous = current;
             current = current->next;
         }
     } while (swapped);
