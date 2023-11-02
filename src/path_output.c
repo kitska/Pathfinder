@@ -1,6 +1,6 @@
 #include "../inc/pathfinder.h"
 
-static void print_separator() {
+static void print_separator(void) {
     for (int i = 0; i < 40; i++) {
         mx_printchar('=');
     }

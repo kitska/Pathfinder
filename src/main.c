@@ -1,6 +1,6 @@
 #include "../inc/pathfinder.h"
 
-static void catch_lines_errors(int argc, char *argv[]) {
+static void catch_errors(int argc, char *argv[]) {
     catch_usage_error(argc);
     catch_file_not_found_error(argv[1]);
     catch_empty_file_error(argv[1]);

@@ -95,7 +95,7 @@ $(OBJD)/%.o: $(SRCD)/%.c $(INCS)
 $(OBJS): | $(OBJD)
 
 $(OBJD):
-	@mkdir $@
+	@mkdir -p $@
 	
 clean:
 	@rm -rf $(OBJD)
@@ -104,9 +104,3 @@ uninstall: clean
 	@rm -rf $(NAME)
 
 reinstall: uninstall install
-
-start: 
-	$(COMP) $(CFLG) main.c libmx.a && .\a.exe
-
-start_i: install
-	$(COMP) $(CFLG) main.c libmx.a && .\a.exe

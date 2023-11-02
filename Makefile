@@ -1,45 +1,48 @@
-NAME = pathfinder
-FLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
-SRC_DIR = src
-INC_DIR = inc
-OBJ_DIR = obj
+NAME	=	pathfinder
 
-INC_FILES = $(wildcard $(INC_DIR)/*.h)
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC_FILES:%.c=%.o)))
+CFLG	=	-std=c11 -Wall -Wextra -Werror -Wpedantic
+COMP 	= 	clang
 
-LIB_DIR = libmx
-LIB_A := $(LIB_DIR)/libmx.a
-LIB_INC := $(LIB_DIR)/inc
+SRCD	=	src
+INCD	=	inc
+OBJD	=	obj
+
+LMXD	=	libmx
+LMXA:=	$(LMXD)/libmx.a
+LMXI:=	$(LMXD)/inc
+
+INC		=	pathfinder.h
+INCS	=	$(addprefix $(INCD)/, $(INC))
+
+SRC		= 	main.c path_adjacency_matrix.c path_alghorithm.c path_errors.c path_extraction.c path_output.c\
+
+SRCS	=	$(addprefix $(SRCD)/, $(SRC))
+OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o)) 
 
 all: install
 
-install: $(LIB_A) $(NAME)
+install: $(LMXA) $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	@clang $(FLAGS) $^ -L$(LIB_DIR) -lmx -o $@
+$(NAME): $(OBJS)
+	@$(COMP) $(CFLG) $(OBJS) -L$(LMXD) -lmx -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
-	@clang $(FLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIB_INC)
+$(OBJD)/%.o: $(SRCD)/%.c $(INCS)
+	@$(COMP) $(CFLG) -c $< -o $@ -I$(INCD) -I$(LMXI)	
 
-$(OBJ_FILES): | $(OBJ_DIR)
+$(OBJS): | $(OBJD)
 
-$(OBJ_DIR):
+$(OBJD):
 	@mkdir -p $@
 
-$(LIB_A):
-	@make -sC $(LIB_DIR)
-
+$(LMXA):
+	@make -sC $(LMXD)
+	
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make clean -sC $(LIB_DIR)
+	@make -sC $(LMXD) $@
+	@rm -rf $(OBJD)
 
-uninstall:
-	@make -sC $(LIB_DIR) $@
-	@rm -rf $(OBJ_DIR)
+uninstall: clean
+	@make -sC $(LMXD) $@
 	@rm -rf $(NAME)
 
-reinstall: uninstall all
-
-start: all 
-	@move .\pathfinder.exe .\src
+reinstall: uninstall install
