@@ -11,27 +11,27 @@ char *mx_strtrim(const char *str) {
     }
 
     const char *end = str;
-    const char *lastNonSpace = NULL;
+    const char *last_non_space = NULL;
     while (*end != '\0') {
         if (!mx_isspace(*end)) {
-            lastNonSpace = end;
+            last_non_space = end;
         }
         end++;
     }
 
-    size_t trimmedLength = 0;
-    if (lastNonSpace != NULL) {
-        trimmedLength = lastNonSpace - start + 1;
+    size_t trimmed_length = 0;
+    if (last_non_space != NULL) {
+        trimmed_length = last_non_space - start + 1;
     }
 
-    char *trimmedStr = mx_strnew(trimmedLength);
-    if (trimmedStr == NULL) {
+    char *trimmed_str = mx_strnew(trimmed_length);
+    if (trimmed_str == NULL) {
         return NULL;
     }
 
-    for (size_t i = 0; i < trimmedLength; i++) {
-        trimmedStr[i] = start[i];
+    for (size_t i = 0; i < trimmed_length; i++) {
+        trimmed_str[i] = start[i];
     }
 
-    return trimmedStr;
+    return trimmed_str;
 }

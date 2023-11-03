@@ -2,30 +2,30 @@
 
 char* mx_nbr_to_hex(unsigned long nbr) {
 
-    int maxDigits = 0;
+    int max_digits = 0;
     unsigned long temp = nbr;
     while (temp > 0) {
-        maxDigits++;
+        max_digits++;
         temp /= 16;
     }
 
-    char* hexString = (char*)malloc((maxDigits + 1) * 1);
-    if (hexString == NULL) {
+    char* hex_string = (char*)malloc((max_digits + 1) * 1);
+    if (hex_string == NULL) {
         return NULL;
     }
 
-    int i = maxDigits - 1;
+    int i = max_digits - 1;
     while (nbr > 0) {
         unsigned long remainder = nbr % 16;
         if (remainder < 10) {
-            hexString[i] = '0' + remainder;
+            hex_string[i] = '0' + remainder;
         } else {
-            hexString[i] = 'a' + (remainder - 10);
+            hex_string[i] = 'a' + (remainder - 10);
         }
         nbr /= 16;
         i--;
     }
 
-    hexString[maxDigits] = '\0';
-    return hexString;
+    hex_string[max_digits] = '\0';
+    return hex_string;
 }

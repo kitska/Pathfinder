@@ -5,14 +5,14 @@ char* mx_itoa(int number) {
         return "-2147483648";
     }
     
-    int maxDigits = 1;
+    int max_digits = 1;
     int temp = number;
     while (temp / 10 != 0) {
-        maxDigits++;
+        max_digits++;
         temp /= 10;
     }
 
-    char* result = (char*)malloc((maxDigits + 1) * sizeof(char));
+    char* result = (char*)malloc((max_digits + 1) * sizeof(char));
     if (result == NULL) {
         return NULL;
     }

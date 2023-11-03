@@ -61,8 +61,3 @@ int** create_adjacency_matrix(char* str, int matrix_size) {
     }
     return adjacency_matrix;
 }
-
-
-
-
-

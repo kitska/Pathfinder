@@ -14,7 +14,7 @@ LMXI:=	$(LMXD)/inc
 INC		=	pathfinder.h
 INCS	=	$(addprefix $(INCD)/, $(INC))
 
-SRC		= 	main.c path_adjacency_matrix.c path_alghorithm.c path_errors.c path_extraction.c path_output.c\
+SRC		= 	main.c path_adjacency_matrix.c path_alghorithm.c path_errors.c path_extraction.c path_output.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o)) 
